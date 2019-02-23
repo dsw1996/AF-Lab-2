@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 1</title>
+</head>
+<body>
+<script>
+    var vehicleName = 'Toyota';
+
+    function printVehicleNameOuter() {
+        console.log(this.vehicleName);
+
+    }
+    console.log(this);
+
+    printVehicleNameOuter();
+
+    var vehicle = {
+        vehicleName:'Nissan',
+        printVehiclenameInner:function(){
+            return function(){
+                console.log(this.vehicleName);
+            }
+        }
+    };
+
+    <!-- var execute = vehicle.printVehiclenameInner();
+     execute();
+     execute.call(vehicle);-->
+
+    var execute = vehicle.printVehiclenameInner().bind(vehicle);
+    execute();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 4</title>
+</head>
+<body>
+<script>
+    function Vehicle(type){
+        Vehicle.VehicleCount++;
+        this.type = type;
+    }
+
+    Vehicle.VehicleCount = 0;
+
+    Vehicle.prototype.drive = function(){
+        console.log('vehicle is driving');
+    };
+
+    var vehicle = new Vehicle('Toyota');
+
+    function Car(type){
+        Vehicle.call(this,type);
+    }
+
+    Car.prototype = Object.create(Vehicle.prototype);
+    Car.prototype.constructor = Car;
+    Car.prototype.balanceWheels = function(){
+        console.log('Wheels are balanced');
+    };
+
+    var car = new Car('Nissan');
+    car.drive();
+</script>
+</body>
+</html>
